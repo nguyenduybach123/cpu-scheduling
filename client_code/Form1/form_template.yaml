@@ -67,3 +67,4 @@ components:
     properties: {}
     type: Label
     layout_properties: {row: ZFFOXI, width_xs: 1, col_xs: 4}
+  data_bindings: []
