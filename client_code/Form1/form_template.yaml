@@ -1,21 +1,69 @@
 is_package: true
 container:
   type: HtmlTemplate
-  properties: {html: '@theme:standard-page.html'}
+  properties: {html: '@theme:standard-page.html', role: null, tooltip: '', background: '',
+    foreground: ''}
+  data_bindings: []
 components:
 - name: label_1
   properties: {text: CPU Scheduling, icon: '', align: center, font: Roboto, bold: true}
   type: Label
   layout_properties: {slot: title}
-- name: data_grid_1
-  properties:
-    columns:
-    - {id: JKSDUP, title: Column 1, data_key: column_1}
-    - {id: VJQQOR, title: Column 2, data_key: column_2}
-    - {id: OJLQEN, title: Column 3, data_key: column_3}
-  type: DataGrid
-  components:
-  - name: repeating_panel_1
-    properties: {item_template: Form1.RowTemplate3}
-    type: RepeatingPanel
+- name: grid_panel_1
+  properties: {}
+  type: GridPanel
   layout_properties: {slot: default}
+  components:
+  - name: button_2
+    properties: {text: Thêm, background: 'theme:On Secondary Container', role: elevated-button,
+      bold: true, icon: 'fa:plus'}
+    type: Button
+    layout_properties: {row: ORULQJ, width_xs: 1, col_xs: 9}
+  - name: button_3
+    properties: {text: Xóa, background: 'theme:On Secondary Container', role: elevated-button,
+      bold: true, icon: 'fa:trash'}
+    type: Button
+    layout_properties: {row: ORULQJ, width_xs: 1, col_xs: 10}
+  - name: data_grid_process
+    properties:
+      columns:
+      - {id: JKSDUP, title: Column 1, data_key: column_1}
+      - {id: VJQQOR, title: Column 2, data_key: column_2}
+      - {id: OJLQEN, title: Column 3, data_key: column_3}
+      role: null
+      auto_header: true
+      show_page_controls: false
+    type: DataGrid
+    components:
+    - name: repeating_panel_1
+      properties: {item_template: Form1.RowTemplate7}
+      type: RepeatingPanel
+    layout_properties: {row: OBELGL, width_xs: 10, col_xs: 1}
+  - name: label_4
+    properties: {text: 'Thời gian chờ trung bình : ', bold: true, align: center, font_size: 17}
+    type: Label
+    layout_properties: {row: STFJPC, width_xs: 3, col_xs: 1}
+  - name: label_2
+    properties: {}
+    type: Label
+    layout_properties: {row: STFJPC, width_xs: 1, col_xs: 4}
+  - name: drop_down_1
+    properties: {role: null, background: 'theme:Secondary', placeholder: Chọn thuật toán,
+      foreground: 'theme:On Secondary', align: full, include_placeholder: true, bold: true}
+    type: DropDown
+    layout_properties: {row: STFJPC, width_xs: 3, col_xs: 6}
+  - name: button_1
+    properties: {text: Giải, bold: true, background: '#00cc44', foreground: 'theme:On
+        Primary', role: elevated-button}
+    type: Button
+    layout_properties: {row: STFJPC, width_xs: 2, col_xs: 9}
+    data_bindings: []
+  - name: label_5
+    properties: {text: 'Thời  hoàn thành trung bình :', align: center, bold: true,
+      font_size: 17}
+    type: Label
+    layout_properties: {row: ZFFOXI, width_xs: 3, col_xs: 1}
+  - name: label_3
+    properties: {}
+    type: Label
+    layout_properties: {row: ZFFOXI, width_xs: 1, col_xs: 4}
