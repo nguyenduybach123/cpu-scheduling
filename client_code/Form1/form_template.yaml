@@ -3,12 +3,19 @@ container:
   type: HtmlTemplate
   properties: {html: '@theme:standard-page.html'}
 components:
-- type: ColumnPanel
-  properties: {col_widths: '{}'}
-  name: content_panel
+- name: label_1
+  properties: {text: CPU Scheduling, icon: '', align: center, font: Roboto, bold: true}
+  type: Label
+  layout_properties: {slot: title}
+- name: data_grid_1
+  properties:
+    columns:
+    - {id: JKSDUP, title: Column 1, data_key: column_1}
+    - {id: VJQQOR, title: Column 2, data_key: column_2}
+    - {id: OJLQEN, title: Column 3, data_key: column_3}
+  type: DataGrid
+  components:
+  - name: repeating_panel_1
+    properties: {item_template: Form1.RowTemplate3}
+    type: RepeatingPanel
   layout_properties: {slot: default}
-  components: []
-- type: FlowPanel
-  properties: {}
-  name: navbar_links
-  layout_properties: {slot: nav-right}
