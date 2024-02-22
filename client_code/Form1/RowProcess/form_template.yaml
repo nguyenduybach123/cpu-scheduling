@@ -1,10 +1,8 @@
 is_package: true
-container: {type: DataRowPanel}
+container:
+  type: DataRowPanel
+  properties: {background: ''}
 components:
-- name: button_remove
-  properties: {text: '', role: filled-button, icon: 'fa:trash'}
-  type: Button
-  layout_properties: {column: WTSMUR}
 - name: lbl_process
   properties: {align: center, bold: true}
   type: Label
@@ -21,3 +19,8 @@ components:
   properties: {align: center, bold: true}
   type: Label
   layout_properties: {column: TIYGWF}
+- name: link_delete
+  properties: {background: '', border: radius, icon: 'fa:trash', align: center, bold: true,
+    font_size: 19, tooltip: Delete}
+  type: Link
+  layout_properties: {column: WTSMUR}
