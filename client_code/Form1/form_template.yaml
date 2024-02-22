@@ -10,14 +10,14 @@ components:
   type: Label
   layout_properties: {slot: title}
 - name: xy_panel_1
-  properties: {height: 600, border: ''}
+  properties: {height: 640, border: ''}
   type: XYPanel
   layout_properties: {slot: default}
   components:
   - name: column_panel_1
     properties: {col_widths: '{"SCCVYS":65}', wrap_on: never}
     type: ColumnPanel
-    layout_properties: {x: 25.234375, y: 49.046875, width: 676}
+    layout_properties: {x: 36.28125, y: 6.09375, width: 789}
     components:
     - name: grid_panel_1
       properties: {}
@@ -28,12 +28,8 @@ components:
         properties: {placeholder: Chọn thuật toán}
         type: DropDown
         layout_properties: {row: SFQCZL, width_xs: 5, col_xs: 0}
-      - name: button_add
-        properties: {text: Thêm, role: elevated-button}
-        type: Button
-        layout_properties: {row: SFQCZL, width_xs: 2, col_xs: 8}
-      - name: button_delete
-        properties: {text: Xóa, role: elevated-button}
+      - name: button_solve
+        properties: {text: Giải, role: elevated-button}
         type: Button
         layout_properties: {row: SFQCZL, width_xs: 2, col_xs: 10}
     - name: linear_panel_1
@@ -48,6 +44,7 @@ components:
           - {id: VJQQOR, title: thời gian đến, data_key: col_at, expand: true}
           - {id: OJLQEN, title: Thời gian thực hiện, data_key: col_bt, expand: true}
           - {id: TIYGWF, data_key: col_prioty, title: Độ ưu tiên, expand: true}
+          - {id: WTSMUR, data_key: column_1, title: Thiết Lập}
           border: ''
           rows_per_page: 25
           show_page_controls: false
@@ -62,6 +59,14 @@ components:
           layout_properties: {pinned: false}
           data_bindings: []
           event_bindings: {show: repeating_panel_process_show}
+        - name: button_add
+          properties: {text: Thêm, role: elevated-button, icon: 'fa:plus', align: right}
+          type: Button
+          layout_properties: {slot: footer}
+        layout_properties: {}
+      - name: xy_panel_plot_process
+        properties: {height: 100}
+        type: XYPanel
       - name: xy_panel_2
         properties: {height: 127, role: elevated-card, spacing_above: medium}
         type: XYPanel
@@ -83,7 +88,3 @@ components:
           properties: {}
           type: Label
           layout_properties: {x: 258.09375, y: 91.09375, width: 78}
-        - name: button_solve
-          properties: {text: Giải, role: elevated-button}
-          type: Button
-          layout_properties: {x: 516.421875, y: 50, width: 103}

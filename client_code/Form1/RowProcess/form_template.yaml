@@ -25,3 +25,7 @@ components:
   layout_properties: {column: TIYGWF}
   data_bindings:
   - {property: text, code: 'self.item[''col_prioty'']', writeback: false}
+- name: button_remove
+  properties: {text: '', role: filled-button, icon: 'fa:trash'}
+  type: Button
+  layout_properties: {column: WTSMUR}
