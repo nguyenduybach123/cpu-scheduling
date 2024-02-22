@@ -7,20 +7,30 @@ components:
   properties: {align: center, bold: true}
   type: Label
   layout_properties: {column: JKSDUP}
+  data_bindings:
+  - {property: text, code: 'self.item[''process'']', writeback: false}
 - name: lbl_at
   properties: {bold: true, align: center}
   type: Label
   layout_properties: {column: VJQQOR}
+  data_bindings:
+  - {property: text, code: 'self.item[''at'']', writeback: false}
 - name: lbl_bt
   properties: {align: center, bold: true}
   type: Label
   layout_properties: {column: OJLQEN}
+  data_bindings:
+  - {property: text, code: 'self.item[''bt'']', writeback: false}
 - name: lbl_prioty
   properties: {align: center, bold: true}
   type: Label
   layout_properties: {column: TIYGWF}
+  data_bindings:
+  - {property: text, code: 'self.item[''prioty'']', writeback: false}
 - name: link_delete
-  properties: {background: '', border: radius, icon: 'fa:trash', align: center, bold: true,
-    font_size: 19, tooltip: Delete}
+  properties: {background: '', border: '', icon: 'fa:trash', align: center, bold: true,
+    font_size: 19, tooltip: Delete, wrap_on: never}
   type: Link
   layout_properties: {column: WTSMUR}
+  event_bindings: {click: link_delete_click}
+  data_bindings: []

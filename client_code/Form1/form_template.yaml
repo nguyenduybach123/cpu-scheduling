@@ -25,11 +25,14 @@ components:
       layout_properties: {grid_position: 'WGEZLF,APSMSA'}
       components:
       - name: drop_down_algorithm
-        properties: {placeholder: Chọn thuật toán}
+        properties: {placeholder: Chọn thuật toán, role: null, background: '', foreground: '',
+          include_placeholder: true, bold: true}
         type: DropDown
         layout_properties: {row: SFQCZL, width_xs: 5, col_xs: 0}
+        event_bindings: {show: drop_down_algorithm_show, change: drop_down_algorithm_change}
+        data_bindings: []
       - name: button_solve
-        properties: {text: Giải, role: elevated-button}
+        properties: {text: Giải, role: elevated-button, font_size: 20}
         type: Button
         layout_properties: {row: SFQCZL, width_xs: 2, col_xs: 10}
     - name: linear_panel_1
@@ -63,26 +66,27 @@ components:
           properties: {}
           type: ColumnPanel
           components:
-          - name: text_box_1
+          - name: txt_process
             properties: {role: outlined, placeholder: Tiến trình, align: center}
             type: TextBox
             layout_properties: {grid_position: 'IXWSVE,ZOGJQJ', full_width_row: false}
-          - name: text_box_2
+          - name: txt_at
             properties: {role: outlined, placeholder: Tg đến, align: center}
             type: TextBox
             layout_properties: {grid_position: 'IXWSVE,IXQFKR'}
-          - name: text_box_3
+          - name: txt_bt
             properties: {role: outlined, placeholder: Tg thực hiện, align: center}
             type: TextBox
             layout_properties: {grid_position: 'IXWSVE,BVLVGK'}
-          - name: text_box_4
+          - name: txt_prioty
             properties: {role: outlined, placeholder: Độ ưu tiên, align: center}
             type: TextBox
             layout_properties: {grid_position: 'IXWSVE,UXAKKW'}
-          - name: button_add
+          - name: button_add_process
             properties: {text: Thêm, role: elevated-button, icon: 'fa:plus', align: center}
             type: Button
             layout_properties: {grid_position: 'IXWSVE,XAJIWX'}
+            event_bindings: {click: button_add_process_click}
         layout_properties: {}
       - name: xy_panel_plot_process
         properties: {height: 100}

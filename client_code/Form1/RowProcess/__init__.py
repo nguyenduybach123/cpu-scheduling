@@ -7,3 +7,7 @@ class RowProcess(RowProcessTemplate):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
+
+  def link_delete_click(self, **event_args):
+    self.remove_from_parent()
+    
