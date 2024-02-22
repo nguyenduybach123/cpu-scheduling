@@ -1,0 +1,27 @@
+is_package: true
+container: {type: DataRowPanel}
+components:
+- name: txb_process
+  properties: {role: outlined}
+  type: TextBox
+  layout_properties: {column: JKSDUP}
+  data_bindings:
+  - {property: text, code: 'self.item[''col_process'']', writeback: false}
+- name: txb_at
+  properties: {role: outlined}
+  type: TextBox
+  layout_properties: {column: VJQQOR}
+  data_bindings:
+  - {property: text, code: 'self.item[''col_at'']', writeback: false}
+- name: txb_bt
+  properties: {role: outlined}
+  type: TextBox
+  layout_properties: {column: OJLQEN}
+  data_bindings:
+  - {property: text, code: 'self.item[''col_bt'']', writeback: false}
+- name: txb_prioty
+  properties: {role: outlined, enabled: true}
+  type: TextBox
+  layout_properties: {column: TIYGWF}
+  data_bindings:
+  - {property: text, code: 'self.item[''col_prioty'']', writeback: false}
