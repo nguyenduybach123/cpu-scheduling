@@ -9,62 +9,65 @@ components:
   properties: {text: CPU Scheduling, icon: '', align: center, font: Roboto, bold: true}
   type: Label
   layout_properties: {slot: title}
-- name: grid_panel_1
-  properties: {}
-  type: GridPanel
+- name: xy_panel_1
+  properties: {height: 509, border: ''}
+  type: XYPanel
   layout_properties: {slot: default}
   components:
-  - name: button_2
-    properties: {text: Thêm, background: 'theme:On Secondary Container', role: elevated-button,
-      bold: true, icon: 'fa:plus'}
-    type: Button
-    layout_properties: {row: ORULQJ, width_xs: 1, col_xs: 9}
-  - name: button_3
-    properties: {text: Xóa, background: 'theme:On Secondary Container', role: elevated-button,
-      bold: true, icon: 'fa:trash'}
-    type: Button
-    layout_properties: {row: ORULQJ, width_xs: 1, col_xs: 10}
-  - name: data_grid_process
+  - name: xy_panel_2
+    properties: {height: 127, role: elevated-card}
+    type: XYPanel
+    layout_properties: {x: 130.1875, y: 333.1875, width: 688.046875}
+    components:
+    - name: drop_down_1
+      properties: {placeholder: Chọn thuật toán}
+      type: DropDown
+      layout_properties: {x: 454.234375, y: 14.234375, width: 200}
+    - name: label_2
+      properties: {text: 'Thời gian chờ trung bình :'}
+      type: Label
+      layout_properties: {x: 27.953125, y: 25.953125, width: 167}
+    - name: label_3
+      properties: {text: 'Thời gian hoàn thành trung bình :'}
+      type: Label
+      layout_properties: {x: 30.046875, y: 93.046875, width: 223}
+    - name: label_4
+      properties: {}
+      type: Label
+      layout_properties: {x: 218, y: 25, width: 64}
+    - name: label_4_copy
+      properties: {}
+      type: Label
+      layout_properties: {x: 258.09375, y: 91.09375, width: 78}
+    - name: button_3
+      properties: {text: Giải, role: elevated-button}
+      type: Button
+      layout_properties: {x: 519.328125, y: 77.1875, width: 103}
+  - name: data_grid_1
     properties:
       columns:
-      - {id: JKSDUP, title: Column 1, data_key: column_1}
-      - {id: VJQQOR, title: Column 2, data_key: column_2}
-      - {id: OJLQEN, title: Column 3, data_key: column_3}
-      role: null
-      auto_header: true
+      - {id: JKSDUP, title: Tiến trình, data_key: column_1}
+      - {id: VJQQOR, title: thời gian đến, data_key: column_2}
+      - {id: OJLQEN, title: Thời gian thực hiện, data_key: column_3}
+      - {id: TIYGWF, data_key: column_4, title: Độ ưu tiên}
+      border: ''
+      rows_per_page: 25
       show_page_controls: false
+      auto_header: true
+      role: tonal-data-grid
     type: DataGrid
     components:
     - name: repeating_panel_1
-      properties: {item_template: Form1.RowTemplate7}
+      properties: {item_template: Form1.RowTemplate7, role: null}
       type: RepeatingPanel
-    layout_properties: {row: OBELGL, width_xs: 10, col_xs: 1}
-  - name: label_4
-    properties: {text: 'Thời gian chờ trung bình : ', bold: true, align: center, font_size: 17}
-    type: Label
-    layout_properties: {row: STFJPC, width_xs: 3, col_xs: 1}
-  - name: label_2
-    properties: {}
-    type: Label
-    layout_properties: {row: STFJPC, width_xs: 1, col_xs: 4}
-  - name: drop_down_1
-    properties: {role: null, background: 'theme:Secondary', placeholder: Chọn thuật toán,
-      foreground: 'theme:On Secondary', align: full, include_placeholder: true, bold: true}
-    type: DropDown
-    layout_properties: {row: STFJPC, width_xs: 3, col_xs: 6}
-  - name: button_1
-    properties: {text: Giải, bold: true, background: '#00cc44', foreground: 'theme:On
-        Primary', role: elevated-button}
-    type: Button
-    layout_properties: {row: STFJPC, width_xs: 2, col_xs: 9}
+      layout_properties: {pinned: true}
+    layout_properties: {x: 132.046875, y: 58.046875, width: 696}
     data_bindings: []
-  - name: label_5
-    properties: {text: 'Thời  hoàn thành trung bình :', align: center, bold: true,
-      font_size: 17}
-    type: Label
-    layout_properties: {row: ZFFOXI, width_xs: 3, col_xs: 1}
-  - name: label_3
-    properties: {}
-    type: Label
-    layout_properties: {row: ZFFOXI, width_xs: 1, col_xs: 4}
-  data_bindings: []
+  - name: button_1
+    properties: {text: Xóa, role: elevated-button}
+    type: Button
+    layout_properties: {x: 703.28125, y: 0.046875, width: 115}
+  - name: button_2
+    properties: {text: Thêm, role: elevated-button}
+    type: Button
+    layout_properties: {x: 595.234375, y: 0, width: 114}
