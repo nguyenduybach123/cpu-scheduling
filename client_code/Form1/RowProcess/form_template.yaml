@@ -1,19 +1,19 @@
 is_package: true
 container: {type: DataRowPanel}
 components:
-- name: text_box_1
+- name: txb_process
   properties: {role: outlined}
   type: TextBox
   layout_properties: {column: JKSDUP}
-- name: text_box_2
+- name: txb_at
   properties: {role: outlined}
   type: TextBox
   layout_properties: {column: VJQQOR}
-- name: text_box_3
+- name: txb_bt
   properties: {role: outlined}
   type: TextBox
   layout_properties: {column: OJLQEN}
-- name: text_box_4
+- name: txb_prioty
   properties: {role: outlined}
   type: TextBox
   layout_properties: {column: TIYGWF}
