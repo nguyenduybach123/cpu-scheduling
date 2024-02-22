@@ -5,6 +5,7 @@ components:
   properties: {role: outlined}
   type: TextBox
   layout_properties: {column: JKSDUP}
+  data_bindings: []
 - name: txb_at
   properties: {role: outlined}
   type: TextBox
