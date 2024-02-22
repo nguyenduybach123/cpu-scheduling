@@ -11,5 +11,21 @@ class Form1(Form1Template):
 
   def repeating_panel_process_show(self, **event_args):
     self.repeating_panel_process.items = [
-      {'col_process':  'A', 'col_at': '6', 'col_bt': '6', 'col_prioty': '6'}
+      {'col_process':  '', 'col_at': '', 'col_bt': '', 'col_prioty': ''}
     ]
+
+  def plot_process_show(self, **event_args):
+    self.plot_1.data = [
+    go.Scatter(
+      x = [1, 2, 3],
+      y = [3, 1, 6],
+      marker = dict(
+        color= 'rgb(16, 32, 77)'
+      )
+    ),
+    go.Bar(
+      x = [1, 2, 3],
+      y = [3, 1, 6],
+      name = 'Bar Chart Example'
+    )
+  ]

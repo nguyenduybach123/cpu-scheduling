@@ -14,18 +14,10 @@ components:
   type: XYPanel
   layout_properties: {slot: default}
   components:
-  - name: button_delete
-    properties: {text: Xóa, role: elevated-button}
-    type: Button
-    layout_properties: {x: 703.28125, y: 0.046875, width: 115}
-  - name: button_add
-    properties: {text: Thêm, role: elevated-button}
-    type: Button
-    layout_properties: {x: 595.234375, y: 0, width: 114}
   - name: column_panel_1
-    properties: {col_widths: '{"SCCVYS":40,"KSHIQO":10}', wrap_on: never}
+    properties: {col_widths: '{"SCCVYS":40}', wrap_on: never}
     type: ColumnPanel
-    layout_properties: {x: 37.1875, y: 95, width: 1051}
+    layout_properties: {x: 25.234375, y: 49.046875, width: 691}
     components:
     - name: linear_panel_1
       properties: {}
@@ -82,12 +74,16 @@ components:
           properties: {text: Giải, role: elevated-button}
           type: Button
           layout_properties: {x: 519.328125, y: 77.1875, width: 103}
-    - name: grid_panel_1
-      properties: {}
-      type: GridPanel
-      layout_properties: {grid_position: 'RZUFNJ,KSHIQO'}
-      components:
-      - name: plot_1
-        properties: {}
-        type: Plot
-        layout_properties: {row: MQRSZR, width_xs: 12, col_xs: 1}
+  - name: button_add
+    properties: {text: Thêm, role: elevated-button}
+    type: Button
+    layout_properties: {x: 499.328125, y: 0, width: 114}
+  - name: button_delete
+    properties: {text: Xóa, role: elevated-button}
+    type: Button
+    layout_properties: {x: 598.375, y: 0, width: 115}
+  - name: plot_process
+    properties: {height: 382}
+    type: Plot
+    layout_properties: {x: 737.046875, y: 57.046875, width: 299}
+    event_bindings: {show: plot_process_show}
