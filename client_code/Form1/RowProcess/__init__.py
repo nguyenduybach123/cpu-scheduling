@@ -1,7 +1,7 @@
-from ._anvil_designer import RowTemplate7Template
+from ._anvil_designer import RowProcessTemplate
 from anvil import *
 
-class RowTemplate7(RowTemplate7Template):
+class RowProcess(RowProcessTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)

@@ -14,12 +14,42 @@ components:
   type: XYPanel
   layout_properties: {slot: default}
   components:
+  - name: button_delete
+    properties: {text: Xóa, role: elevated-button}
+    type: Button
+    layout_properties: {x: 703.28125, y: 0.046875, width: 115}
+  - name: button_add
+    properties: {text: Thêm, role: elevated-button}
+    type: Button
+    layout_properties: {x: 595.234375, y: 0, width: 114}
+  - name: data_grid_process
+    properties:
+      columns:
+      - {id: JKSDUP, title: Tiến trình, data_key: col_process, expand: true}
+      - {id: VJQQOR, title: thời gian đến, data_key: col_at, expand: true}
+      - {id: OJLQEN, title: Thời gian thực hiện, data_key: col_bt, expand: true}
+      - {id: TIYGWF, data_key: col_prioty, title: Độ ưu tiên, expand: true}
+      border: ''
+      rows_per_page: 25
+      show_page_controls: false
+      auto_header: true
+      role: tonal-data-grid
+    type: DataGrid
+    components:
+    - name: repeating_panel_process
+      properties: {item_template: Form1.RowProcess, role: null}
+      type: RepeatingPanel
+      layout_properties: {pinned: false}
+      data_bindings: []
+      event_bindings: {show: repeating_panel_process_show}
+    layout_properties: {x: 134.09375, y: 50.09375, width: 696}
+    data_bindings: []
   - name: xy_panel_2
     properties: {height: 127, role: elevated-card}
     type: XYPanel
-    layout_properties: {x: 130.1875, y: 333.1875, width: 688.046875}
+    layout_properties: {x: 136.28125, y: 335.046875, width: 688.046875}
     components:
-    - name: drop_down_1
+    - name: drop_down_algorithm
       properties: {placeholder: Chọn thuật toán}
       type: DropDown
       layout_properties: {x: 454.234375, y: 14.234375, width: 200}
@@ -31,43 +61,15 @@ components:
       properties: {text: 'Thời gian hoàn thành trung bình :'}
       type: Label
       layout_properties: {x: 30.046875, y: 93.046875, width: 223}
-    - name: label_4
+    - name: label_wta
       properties: {}
       type: Label
       layout_properties: {x: 218, y: 25, width: 64}
-    - name: label_4_copy
+    - name: label_taa
       properties: {}
       type: Label
       layout_properties: {x: 258.09375, y: 91.09375, width: 78}
-    - name: button_3
+    - name: button_solve
       properties: {text: Giải, role: elevated-button}
       type: Button
       layout_properties: {x: 519.328125, y: 77.1875, width: 103}
-  - name: data_grid_1
-    properties:
-      columns:
-      - {id: JKSDUP, title: Tiến trình, data_key: column_1}
-      - {id: VJQQOR, title: thời gian đến, data_key: column_2}
-      - {id: OJLQEN, title: Thời gian thực hiện, data_key: column_3}
-      - {id: TIYGWF, data_key: column_4, title: Độ ưu tiên}
-      border: ''
-      rows_per_page: 25
-      show_page_controls: false
-      auto_header: true
-      role: tonal-data-grid
-    type: DataGrid
-    components:
-    - name: repeating_panel_1
-      properties: {item_template: Form1.RowTemplate7, role: null}
-      type: RepeatingPanel
-      layout_properties: {pinned: true}
-    layout_properties: {x: 132.046875, y: 58.046875, width: 696}
-    data_bindings: []
-  - name: button_1
-    properties: {text: Xóa, role: elevated-button}
-    type: Button
-    layout_properties: {x: 703.28125, y: 0.046875, width: 115}
-  - name: button_2
-    properties: {text: Thêm, role: elevated-button}
-    type: Button
-    layout_properties: {x: 595.234375, y: 0, width: 114}

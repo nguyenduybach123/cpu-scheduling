@@ -2,18 +2,18 @@ is_package: true
 container: {type: DataRowPanel}
 components:
 - name: text_box_1
-  properties: {}
+  properties: {role: outlined}
   type: TextBox
   layout_properties: {column: JKSDUP}
 - name: text_box_2
-  properties: {}
+  properties: {role: outlined}
   type: TextBox
   layout_properties: {column: VJQQOR}
 - name: text_box_3
-  properties: {}
+  properties: {role: outlined}
   type: TextBox
   layout_properties: {column: OJLQEN}
 - name: text_box_4
-  properties: {}
+  properties: {role: outlined}
   type: TextBox
   layout_properties: {column: TIYGWF}
