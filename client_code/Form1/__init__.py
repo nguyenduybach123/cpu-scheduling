@@ -14,18 +14,4 @@ class Form1(Form1Template):
       {'col_process':  '', 'col_at': '', 'col_bt': '', 'col_prioty': ''}
     ]
 
-  def plot_process_show(self, **event_args):
-    self.plot_1.data = [
-    go.Scatter(
-      x = [1, 2, 3],
-      y = [3, 1, 6],
-      marker = dict(
-        color= 'rgb(16, 32, 77)'
-      )
-    ),
-    go.Bar(
-      x = [1, 2, 3],
-      y = [3, 1, 6],
-      name = 'Bar Chart Example'
-    )
-  ]
+

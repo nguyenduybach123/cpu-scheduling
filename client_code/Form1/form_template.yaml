@@ -15,10 +15,27 @@ components:
   layout_properties: {slot: default}
   components:
   - name: column_panel_1
-    properties: {col_widths: '{"SCCVYS":40}', wrap_on: never}
+    properties: {col_widths: '{"SCCVYS":65}', wrap_on: never}
     type: ColumnPanel
-    layout_properties: {x: 25.234375, y: 49.046875, width: 691}
+    layout_properties: {x: 25.234375, y: 49.046875, width: 676}
     components:
+    - name: grid_panel_1
+      properties: {}
+      type: GridPanel
+      layout_properties: {grid_position: 'WGEZLF,APSMSA'}
+      components:
+      - name: drop_down_algorithm
+        properties: {placeholder: Chọn thuật toán}
+        type: DropDown
+        layout_properties: {row: SFQCZL, width_xs: 5, col_xs: 0}
+      - name: button_add
+        properties: {text: Thêm, role: elevated-button}
+        type: Button
+        layout_properties: {row: SFQCZL, width_xs: 2, col_xs: 8}
+      - name: button_delete
+        properties: {text: Xóa, role: elevated-button}
+        type: Button
+        layout_properties: {row: SFQCZL, width_xs: 2, col_xs: 10}
     - name: linear_panel_1
       properties: {}
       type: LinearPanel
@@ -50,10 +67,6 @@ components:
         type: XYPanel
         layout_properties: {}
         components:
-        - name: drop_down_algorithm
-          properties: {placeholder: Chọn thuật toán}
-          type: DropDown
-          layout_properties: {x: 454.234375, y: 14.234375, width: 200}
         - name: label_2
           properties: {text: 'Thời gian chờ trung bình :'}
           type: Label
@@ -73,17 +86,4 @@ components:
         - name: button_solve
           properties: {text: Giải, role: elevated-button}
           type: Button
-          layout_properties: {x: 519.328125, y: 77.1875, width: 103}
-  - name: button_add
-    properties: {text: Thêm, role: elevated-button}
-    type: Button
-    layout_properties: {x: 499.328125, y: 0, width: 114}
-  - name: button_delete
-    properties: {text: Xóa, role: elevated-button}
-    type: Button
-    layout_properties: {x: 598.375, y: 0, width: 115}
-  - name: plot_process
-    properties: {height: 382}
-    type: Plot
-    layout_properties: {x: 737.046875, y: 57.046875, width: 299}
-    event_bindings: {show: plot_process_show}
+          layout_properties: {x: 516.421875, y: 50, width: 103}
