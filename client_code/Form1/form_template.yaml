@@ -35,6 +35,7 @@ components:
         properties: {text: Giải, role: elevated-button, font_size: 20}
         type: Button
         layout_properties: {row: SFQCZL, width_xs: 2, col_xs: 10}
+        event_bindings: {click: button_solve_click}
     - name: linear_panel_1
       properties: {}
       type: LinearPanel
@@ -91,6 +92,15 @@ components:
       - name: xy_panel_plot_process
         properties: {height: 100}
         type: XYPanel
+        components:
+        - name: label_4
+          properties: {}
+          type: Label
+          layout_properties: {x: 141, y: 48, width: 55}
+        - name: label_5
+          properties: {}
+          type: Label
+          layout_properties: {x: 219.953125, y: 48, width: 69}
       - name: xy_panel_2
         properties: {height: 127, role: elevated-card, spacing_above: medium}
         type: XYPanel

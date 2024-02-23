@@ -32,5 +32,15 @@ class Form1(Form1Template):
   def reset_txt_inser_process(self):
     self.txt_process.text = self.txt_at.text = self.txt_bt.text = self.txt_prioty.text = ""
 
+  def button_solve_click(self, **event_args):
+    processList = [
+      {"name": "A", "time-start": 1, "time-end": 2},
+      {"name": "B", "time-start": 1, "time-end": 2},
+      {"name": "C", "time-start": 1, "time-end": 2},
+      {"name": "D", "time-start": 1, "time-end": 2}
+    ]
+    for process in processList:
+      print(process['name'])
+
 
 
