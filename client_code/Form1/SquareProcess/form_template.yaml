@@ -7,7 +7,7 @@ components:
   components:
   - name: lbl_name
     properties: {bold: true, align: center, text: '', background: 'theme:Primary',
-      font_size: 16, spacing_above: none, spacing_below: none}
+      font_size: 16, spacing_above: none, spacing_below: none, border: 1px solid}
     type: Label
     layout_properties: {grid_position: 'GUGKYG,ALXMQR'}
   - name: lbl_start
