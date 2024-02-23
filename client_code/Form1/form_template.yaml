@@ -92,12 +92,15 @@ components:
       - name: linear_panel_process
         properties: {spacing_below: medium, spacing_above: medium}
         type: LinearPanel
-        components: []
+        components:
+        - name: xy_panel_process
+          properties: {height: 83}
+          type: XYPanel
+          layout_properties: {}
         layout_properties: {}
       - name: xy_panel_2
         properties: {height: 127, role: elevated-card, spacing_above: medium}
         type: XYPanel
-        layout_properties: {}
         components:
         - name: label_2
           properties: {text: 'Thời gian chờ trung bình :'}

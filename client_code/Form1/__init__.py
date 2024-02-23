@@ -48,21 +48,13 @@ class Form1(Form1Template):
   def drawProcessGanttCharts(self, processTimeLines, processBackgrounds):
     widthSquare = 40
     posX = 30
-    posY = 20
-
-    panelXYProcess = XYPanel()
+    posY = 0
     
     for process in processTimeLines:
       processSquare = SquareProcess(name_process = process['name'], time_start = process['time-start'], time_end = process['time-end'], background_process = processBackgrounds[process['name']])
-      processSquare.width = widthSquare
-      panelXYProcess.add_component(processSquare)
-
-    for component in panelXYProcess.get_components():
-      component.x = posX
-      component.y = posY
+      self.xy_panel_process.add_component(processSquare, x=posX, y=posY, width=widthSquare)
       posX = posX + widthSquare
 
-    self.linear_panel_process.add_component(panelXYProcess)
 
 
       
