@@ -94,11 +94,11 @@ components:
         type: XYPanel
         components:
         - name: square_process_1
-          properties: {}
+          properties: {name_process: A, time_end: '', time_start: '3'}
           type: form:Form1.SquareProcess
           layout_properties: {x: 53, y: 17.046875, width: 39}
         - name: square_process_2
-          properties: {}
+          properties: {name_process: A, time_end: '1', time_start: '2'}
           type: form:Form1.SquareProcess
           layout_properties: {x: 92, y: 17, width: 39}
         layout_properties: {}

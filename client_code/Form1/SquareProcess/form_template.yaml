@@ -6,12 +6,12 @@ components:
   layout_properties: {grid_position: 'CVMSAQ,UFPOCV'}
   components:
   - name: lbl_name
-    properties: {bold: true, align: center, text: A, background: 'theme:Primary',
+    properties: {bold: true, align: center, text: '', background: 'theme:Primary',
       font_size: 16, spacing_above: none, spacing_below: none}
     type: Label
     layout_properties: {grid_position: 'GUGKYG,ALXMQR'}
   - name: lbl_start
-    properties: {bold: true, align: left, text: '1', spacing_below: none, spacing_above: none}
+    properties: {bold: true, align: left, text: '', spacing_below: none, spacing_above: none}
     type: Label
     layout_properties: {grid_position: 'KDJOVA,KZQQRW'}
   - name: lbl_end
@@ -21,8 +21,6 @@ components:
 is_package: true
 custom_component: true
 properties:
-- name: prop
-  type: enum
-  important: true
-  default_binding_prop: true
-  options: []
+- {name: time_start, type: string, important: true, default_binding_prop: true, default_value: ''}
+- {name: time_end, type: string, default_value: '', important: true}
+- {name: name_process, type: string, default_value: '', important: true}

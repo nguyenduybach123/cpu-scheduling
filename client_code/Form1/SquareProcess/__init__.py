@@ -7,3 +7,28 @@ class SquareProcess(SquareProcessTemplate):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
+
+  @property
+  def name_process(self):
+    return self.lbl_name.text
+  
+  @name_process.setter
+  def name_process(self, value):
+    self.lbl_name.text = value
+
+  @property
+  def time_start(self):
+    return self.lbl_start.text
+  
+  @time_start.setter
+  def time_start(self, value):
+    self.lbl_start.text = value
+
+  @property
+  def time_end(self):
+    return self.lbl_end.text
+  
+  @time_end.setter
+  def time_end(self, value):
+    self.lbl_end.text = value
+  
