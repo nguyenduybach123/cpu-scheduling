@@ -41,7 +41,7 @@ class Form1(Form1Template):
       {"name": "D", "time-start": "4", "time-end": "5"}
     ]
 
-    processBackgrounds = ["red","green","blue"]
+    processBackgrounds = {"A": "red", "B": "green", "C": "blue", "D": "yellow"}
 
     self.drawProcessGanttCharts(processTimeLines, processBackgrounds)
 
@@ -49,13 +49,22 @@ class Form1(Form1Template):
     widthSquare = 40
     posX = 30
     posY = 20
+
+    panelXYProcess = XYPanel()
+    
     for process in processTimeLines:
-      processSquare = SquareProcess(name_process = process['name'], time_start = process['time-start'], time_end = process['time-end'])
-      self.xy_panel_plot_process.add_component(processSquare)
+      processSquare = SquareProcess(name_process = process['name'], time_start = process['time-start'], time_end = process['time-end'], background_process = processBackgrounds[process['name']])
       processSquare.width = widthSquare
-      processSquare.x = posX
-      processSquare.y = posY
+      panelXYProcess.add_component(processSquare)
+
+    for component in panelXYProcess.get_components():
+      component.x = posX
+      component.y = posY
       posX = posX + widthSquare
+
+    self.linear_panel_process.add_component(panelXYProcess)
+
+
       
     
 

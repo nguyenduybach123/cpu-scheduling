@@ -89,18 +89,10 @@ components:
             layout_properties: {grid_position: 'IXWSVE,XAJIWX'}
             event_bindings: {click: button_add_process_click}
         layout_properties: {}
-      - name: xy_panel_plot_process
-        properties: {height: 131}
-        type: XYPanel
-        components:
-        - name: square_process_1
-          properties: {name_process: A, time_end: '', time_start: '3', background_process: 'theme:Primary'}
-          type: form:Form1.SquareProcess
-          layout_properties: {x: 53, y: 17.046875, width: 39}
-        - name: square_process_2
-          properties: {name_process: A, time_end: '1', time_start: '2'}
-          type: form:Form1.SquareProcess
-          layout_properties: {x: 92, y: 17, width: 39}
+      - name: linear_panel_process
+        properties: {spacing_below: medium, spacing_above: medium}
+        type: LinearPanel
+        components: []
         layout_properties: {}
       - name: xy_panel_2
         properties: {height: 127, role: elevated-card, spacing_above: medium}
