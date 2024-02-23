@@ -1,5 +1,6 @@
 from ._anvil_designer import SquareProcessTemplate
 from anvil import *
+import anvil.server
 
 class SquareProcess(SquareProcessTemplate):
   def __init__(self, **properties):

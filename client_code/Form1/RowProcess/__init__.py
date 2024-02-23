@@ -1,5 +1,6 @@
 from ._anvil_designer import RowProcessTemplate
 from anvil import *
+import anvil.server
 
 class RowProcess(RowProcessTemplate):
   def __init__(self, **properties):

@@ -1,5 +1,6 @@
 from ._anvil_designer import InsertProcessTemplate
 from anvil import *
+import anvil.server
 
 class InsertProcess(InsertProcessTemplate):
   def __init__(self, **properties):
