@@ -90,17 +90,18 @@ components:
             event_bindings: {click: button_add_process_click}
         layout_properties: {}
       - name: xy_panel_plot_process
-        properties: {height: 100}
+        properties: {height: 131}
         type: XYPanel
         components:
-        - name: label_4
+        - name: square_process_1
           properties: {}
-          type: Label
-          layout_properties: {x: 141, y: 48, width: 55}
-        - name: label_5
+          type: form:Form1.SquareProcess
+          layout_properties: {x: 53, y: 17.046875, width: 39}
+        - name: square_process_2
           properties: {}
-          type: Label
-          layout_properties: {x: 219.953125, y: 48, width: 69}
+          type: form:Form1.SquareProcess
+          layout_properties: {x: 92, y: 17, width: 39}
+        layout_properties: {}
       - name: xy_panel_2
         properties: {height: 127, role: elevated-card, spacing_above: medium}
         type: XYPanel
