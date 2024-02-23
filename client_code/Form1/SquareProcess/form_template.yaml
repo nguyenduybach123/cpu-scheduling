@@ -24,3 +24,4 @@ properties:
 - {name: time_start, type: string, important: true, default_binding_prop: true, default_value: ''}
 - {name: time_end, type: string, default_value: '', important: true}
 - {name: name_process, type: string, default_value: '', important: true}
+- {name: background_process, type: color, default_value: '', important: true}

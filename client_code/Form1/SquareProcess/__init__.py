@@ -32,3 +32,10 @@ class SquareProcess(SquareProcessTemplate):
   def time_end(self, value):
     self.lbl_end.text = value
   
+  @property
+  def background_process(self):
+    return self.lbl_name.background
+
+  @background_process.setter
+  def background_process(self, value):
+    self.lbl_name.background = value

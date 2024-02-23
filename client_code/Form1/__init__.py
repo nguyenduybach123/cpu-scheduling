@@ -1,6 +1,7 @@
 from ._anvil_designer import Form1Template
 from anvil import *
 import plotly.graph_objects as go
+from .SquareProcess import SquareProcess
 
 class Form1(Form1Template):
   def __init__(self, **properties):
@@ -33,14 +34,28 @@ class Form1(Form1Template):
     self.txt_process.text = self.txt_at.text = self.txt_bt.text = self.txt_prioty.text = ""
 
   def button_solve_click(self, **event_args):
-    processList = [
-      {"name": "A", "time-start": 1, "time-end": 2},
-      {"name": "B", "time-start": 1, "time-end": 2},
-      {"name": "C", "time-start": 1, "time-end": 2},
-      {"name": "D", "time-start": 1, "time-end": 2}
+    processTimeLines = [
+      {"name": "A", "time-start": "1", "time-end": ""},
+      {"name": "B", "time-start": "2", "time-end": ""},
+      {"name": "C", "time-start": "3", "time-end": ""},
+      {"name": "D", "time-start": "4", "time-end": "5"}
     ]
-    for process in processList:
-      print(process['name'])
 
+    processBackgrounds = ["red","green","blue"]
 
+    self.drawProcessGanttCharts(processTimeLines, processBackgrounds)
+
+  def drawProcessGanttCharts(self, processTimeLines, processBackgrounds):
+    widthSquare = 40
+    posX = 30
+    posY = 20
+    for process in processTimeLines:
+      processSquare = SquareProcess(name_process = process['name'], time_start = process['time-start'], time_end = process['time-end'])
+      self.xy_panel_plot_process.add_component(processSquare)
+      processSquare.width = widthSquare
+      processSquare.x = posX
+      processSquare.y = posY
+      posX = posX + widthSquare
+      
+    
 
