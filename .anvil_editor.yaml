@@ -6,7 +6,7 @@ unique_ids:
     Form1.SquareProcess: '1708658728576209985065499.6025'
   modules: {}
   server_modules:
-    ServerModule1: '1708702152788531711334073.44604'
+    ServerCPUScheduling: '1708702152788531711334073.44604'
   assets:
     standard-page.html: 5554H55YVJUKAXLNUUVL3K7EHPW4246J
     theme.css: BONRMQ62CFYO3RTR5D33L55IPOI3P2XS

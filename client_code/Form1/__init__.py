@@ -23,9 +23,9 @@ class Form1(Form1Template):
   def button_add_process_click(self, **event_args):
     objProcess = [{
       'process': self.txt_process.text,
-      'at': self.txt_at.text,
-      'bt': self.txt_bt.text,
-      'prioty': self.txt_prioty.text
+      'at': int(self.txt_at.text),
+      'bt': int(self.txt_bt.text),
+      'prioty': int(self.txt_prioty.text)
     }]
     processListAdded = list(self.repeating_panel_process.items) + objProcess
     self.repeating_panel_process.items = processListAdded
@@ -35,15 +35,9 @@ class Form1(Form1Template):
     self.txt_process.text = self.txt_at.text = self.txt_bt.text = self.txt_prioty.text = ""
 
   def button_solve_click(self, **event_args):
-    processTimeLines = [
-      {"name": "A", "time-start": "1", "time-end": ""},
-      {"name": "B", "time-start": "2", "time-end": ""},
-      {"name": "C", "time-start": "3", "time-end": ""},
-      {"name": "D", "time-start": "4", "time-end": "5"}
-    ]
-
-    processBackgrounds = {"A": "red", "B": "green", "C": "blue", "D": "yellow"}
-
+    processBackgrounds = {"A": "red", "B": "green", "C": "blue"}
+    processTimeLines = anvil.server.call('roundRobinScheduling', self.repeating_panel_process.items, 4)
+    print(processTimeLines)
     self.drawProcessGanttCharts(processTimeLines, processBackgrounds)
 
   def drawProcessGanttCharts(self, processTimeLines, processBackgrounds):
@@ -51,10 +45,12 @@ class Form1(Form1Template):
     posX = 30
     posY = 0
     
-    for process in processTimeLines:
-      processSquare = SquareProcess(name_process = process['name'], time_start = process['time-start'], time_end = process['time-end'], background_process = processBackgrounds[process['name']])
+    for i in range(0,len(processTimeLines)):
+      process = processTimeLines[i]
+      timeEnd = process['time-end'] if i == len(processTimeLines) - 1 else ""
+      processSquare = SquareProcess(name_process = process['name'], time_start = process['time-start'], time_end = timeEnd, background_process = processBackgrounds[process['name']])
       self.xy_panel_process.add_component(processSquare, x=posX, y=posY, width=widthSquare)
-      posX = posX + widthSquare
+      posX = posX + widthSquare  
 
 
 
