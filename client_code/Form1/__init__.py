@@ -22,6 +22,7 @@ class Form1(Form1Template):
 
   def button_add_process_click(self, **event_args):
     objProcess = [{
+      'index': len(self.repeating_panel_process.items),
       'process': self.txt_process.text,
       'at': int(self.txt_at.text),
       'bt': int(self.txt_bt.text),

@@ -11,6 +11,7 @@ import queue
 @anvil.server.callable
 def roundRobinScheduling(processList, quantumTime):
   ganttGraph = []
+  waitingTimeList = []
   processListSortedByAT = sorted(processList, key=lambda item: item['at'])
   timeLine = 0
   processQueue = queue.Queue()
@@ -29,34 +30,54 @@ def roundRobinScheduling(processList, quantumTime):
     else:
       ganttGraph.append({'name': processReady['process'], 'time-start': str(timeLine), 'time-end': str(timeLine + processReady['bt'])})
       timeLine = timeLine + processReady['bt']
-  return ganttGraph
+      waitingTimeList.append({'name': processReady['name'], 'waiting-time': timeLine - processList[processReady['index']['bt']]})
+  return ganttGraph, waitingTimeList
 
 @anvil.server.callable
 def FCFSScheduling(processList):
   ganttGraph = []
+  waiting_time = [0]
+  waitingTimeList = []
   processListSortedByAT = sorted(processList, key=lambda item: item['at'])
   timeLine = 0
   processQueue = queue.Queue()
   for process in processListSortedByAT:
     processQueue.put(process)
 
+  i = 1
   while(processQueue.empty() == False):
     processReady = processQueue.get()
     ganttGraph.append({'name': processReady['process'], 'time-start': str(timeLine), 'time-end': str(timeLine + processReady['bt'])})
+    waiting_time_value = waiting_time[i-1] + processReady['bt'] - processReady['at']
+    if waiting_time_value < 0:
+          waiting_time_value = 0
+    waiting_time.append(waiting_time_value)
+    waitingTimeList.append({'name': processReady['name'], 'waiting-time': waiting_time_value})
+    i += 1
     timeLine = timeLine + processReady['bt']
-  return ganttGraph
-
+  return ganttGraph, waitingTimeList
+0
 @anvil.server.callable
 def SJFScheduling(processList):
   ganttGraph = []
-  processListSortedByAT = sorted(processList, key=lambda item: item['bt'])
+  waiting_time = [0]
+  waitingTimeList = []
   timeLine = 0
+  processListSortedByAT = sorted(processList, key=lambda item: item['bt'])
   processQueue = queue.Queue()
   for process in processListSortedByAT:
     processQueue.put(process)
 
+  i = 1
   while(processQueue.empty() == False):
     processReady = processQueue.get()
     ganttGraph.append({'name': processReady['process'], 'time-start': str(timeLine), 'time-end': str(timeLine + processReady['bt'])})
+    waiting_time_value = waiting_time[i-1] + processReady['bt'] - processReady['at']
+    if waiting_time_value < 0:
+          waiting_time_value = 0
+    waiting_time.append(waiting_time_value)
+    waitingTimeList.append({'name': processReady['name'], 'waiting-time': waiting_time_value})
+    i += 1
     timeLine = timeLine + processReady['bt']
-  return ganttGraph
+  return ganttGraph, waitingTimeList
+
