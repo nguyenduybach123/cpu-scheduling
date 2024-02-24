@@ -40,3 +40,4 @@ components:
   layout_properties: {column: YVXBOW}
   data_bindings:
   - {property: text, code: 'self.item[''color'']', writeback: false}
+  - {property: background, code: 'self.item[''color'']', writeback: false}

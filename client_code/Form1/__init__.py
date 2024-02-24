@@ -11,17 +11,7 @@ class Form1(Form1Template):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
-    self.plot_process.data = [
-      go.Scatter(
-        x = [1, 2, 3],
-        y = [3, 1, 6],
-        name = 'tiến trình',
-        marker = dict(
-          color= 'rgb(16, 32, 77)'
-        )
-      )
-    ]
-
+    self.txt_quantum_time.visible = False
     self.plot_process.layout = {
       'title': 'Thời gian xử lý các tiến trình',
       'xaxis': {
@@ -43,9 +33,11 @@ class Form1(Form1Template):
     if(algorithmSelected == 'Round Robin'):
       self.txt_prioty.background = "theme:On Disabled"
       self.txt_prioty.enabled = False
+      self.txt_quantum_time.visible = True
     else:
       self.txt_prioty.background = ""
       self.txt_prioty.enabled = True
+      self.txt_quantum_time.visible = False
 
   def button_add_process_click(self, **event_args):
     if(self.txt_prioty.text == ""):
@@ -81,18 +73,36 @@ class Form1(Form1Template):
   def button_solve_click(self, **event_args):
     self.xy_panel_process.clear()
     processBackgrounds = self.initDictColorFromProcessList(self.repeating_panel_process.items)
-    processTimeLines, processTimeList, timeAvg = anvil.server.call('roundRobinScheduling', self.repeating_panel_process.items, 4)
-    #processTimeLines, processTimeList, timeAvg = anvil.server.call('SJFScheduling', self.repeating_panel_process.items)
+
+    algorithmSelected = self.drop_down_algorithm.selected_value
+    if(algorithmSelected == 'Round Robin'):
+      
+      if(self.txt_quantum_time.text == "" or self.isNumberic(self.txt_quantum_time.text) == False):
+        alert("Yêu cầu giá trị quantum cho giải thuật !!")
+        return
+
+      quantumTime = int(self.txt_quantum_time.text)
+      if(quantumTime == 0):
+        alert("Giá trị quantum phải khác 0 !!")
+        return
+      
+      processTimeLines, processTimeList, timeAvg = anvil.server.call('roundRobinScheduling', self.repeating_panel_process.items, quantumTime)
+    elif(algorithmSelected == 'FCFS'):
+      processTimeLines, processTimeList, timeAvg = anvil.server.call('FCFSScheduling', self.repeating_panel_process.items)
+    else:
+      processTimeLines, processTimeList, timeAvg = anvil.server.call('SJFScheduling', self.repeating_panel_process.items)
+    
     print(timeAvg)
     self.drawProcessGanttCharts(processTimeLines, processBackgrounds)
     self.label_wta.text = timeAvg['waiting-time-avg']
     self.label_taa.text = timeAvg['turnaround-time-avg']
-
+    self.drawPlotProcess(processTimeList)
+  
   def initDictColorFromProcessList(self, processList):
     dictColor = {}
     for process in processList:
-        name = item['process']
-        color = item['color']
+        name = process['process']
+        color = process['color']
         dictColor[name] = color
     return dictColor
   
@@ -133,7 +143,19 @@ class Form1(Form1Template):
       self.xy_panel_process.add_component(processSquare, x=posX, y=posY, width=withProcess)
       posX = posX + withProcess 
 
-
+  def drawPlotProcess(self, processTimeList):
+    self.plot_process.data = [
+      go.Scatter(
+        x = list([process['waiting-time'] for process in processTimeList]),
+        y = list([process['turnaround-time'] for process in processTimeList]),
+        name = ['A','B','C'],
+        marker = dict(
+          color = ['#ff9933', '#ff0000', '#ff99ff'],
+          size = 20,
+          hovertemplate = ['A','B','C']
+        )
+      )
+    ]
 
       
     

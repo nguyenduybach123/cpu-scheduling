@@ -30,7 +30,7 @@ def roundRobinScheduling(processList, quantumTime):
     else:
       ganttGraph.append({'name': processReady['process'], 'time-start': str(timeLine), 'time-end': str(timeLine + processReady['bt'])})
       timeLine = timeLine + processReady['bt']
-      processTimeList.append({'name': processReady['name'], 'turnaround-time': timeLine, 'waiting-time': timeLine - processList[processReady['index']['bt']]})
+      processTimeList.append({'name': processReady['process'], 'turnaround-time': timeLine, 'waiting-time': timeLine - processList[processReady['index']]['bt']})
   
   timeAvg = {
     'waiting-time-avg': avgList([processTime['waiting-time'] for processTime in processTimeList]),
