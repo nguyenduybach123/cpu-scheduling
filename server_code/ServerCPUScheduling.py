@@ -58,7 +58,7 @@ def FCFSScheduling(processList):
     if turnaround_time_value < 0:
           turnaround_time_value = 0
     turnaround_time.append(turnaround_time_value)
-    processTimeList.append({'name': processReady['name'], 'turnaround-time': turnaround_time_value, 'waiting-time': timeLine})
+    processTimeList.append({'name': processReady['process'], 'turnaround-time': turnaround_time_value, 'waiting-time': timeLine})
     i += 1
     timeLine = timeLine + processReady['bt']
   

@@ -35,7 +35,7 @@ components:
   event_bindings: {click: link_delete_click}
   data_bindings: []
 - name: lbl_color
-  properties: {bold: true}
+  properties: {bold: true, align: center}
   type: Label
   layout_properties: {column: YVXBOW}
   data_bindings:

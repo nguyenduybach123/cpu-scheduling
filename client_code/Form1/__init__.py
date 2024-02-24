@@ -21,6 +21,8 @@ class Form1(Form1Template):
         'title': 'thời gian hoàn thành'
       }
     }
+
+  
   
   def repeating_panel_process_show(self, **event_args):
     self.repeating_panel_process.items = []
@@ -71,6 +73,9 @@ class Form1(Form1Template):
     self.txt_process.text = self.txt_at.text = self.txt_bt.text = self.txt_prioty.text = self.txt_color.text = ""
 
   def button_solve_click(self, **event_args):
+    if(len(self.repeating_panel_process.items) == 0):
+      alert("tiến trình không tồn tại !!!")
+      return   
     self.xy_panel_process.clear()
     processBackgrounds = self.initDictColorFromProcessList(self.repeating_panel_process.items)
 
@@ -138,24 +143,25 @@ class Form1(Form1Template):
     for i in range(0,len(processTimeLines)):
       process = processTimeLines[i]
       timeEnd = process['time-end'] if i == len(processTimeLines) - 1 else ""
-      withProcess = widthSquare + int(int(process['time-end']) - int(process['time-start']) * 1.3)
+      widthProcess = widthSquare + int(int(process['time-end']) - int(process['time-start']) * 1.3)
       processSquare = SquareProcess(name_process = process['name'], time_start = process['time-start'], time_end = timeEnd, background_process = processBackgrounds[process['name']])
-      self.xy_panel_process.add_component(processSquare, x=posX, y=posY, width=withProcess)
+      self.xy_panel_process.add_component(processSquare, x=posX, y=posY, width = widthProcess if widthProcess > 40 else widthSquare)
       posX = posX + withProcess 
 
   def drawPlotProcess(self, processTimeList):
-    self.plot_process.data = [
-      go.Scatter(
-        x = list([process['waiting-time'] for process in processTimeList]),
-        y = list([process['turnaround-time'] for process in processTimeList]),
-        name = ['A','B','C'],
-        marker = dict(
-          color = ['#ff9933', '#ff0000', '#ff99ff'],
-          size = 20,
-          hovertemplate = ['A','B','C']
+    for process in processTimeList:
+      self.plot_process.data.append(
+        go.Scatter(
+          x = process['waiting-time'],
+          y = process['turnaround-time'],
+          name = process['name'],
+          marker = dict(
+            color = "#ff9999",
+            size = 20
+          )
         )
       )
-    ]
+    self.plot_process.redraw()
 
       
     
