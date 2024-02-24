@@ -2,6 +2,7 @@ from ._anvil_designer import Form1Template
 from anvil import *
 import anvil.server
 import plotly.graph_objects as go
+import re
 from .SquareProcess import SquareProcess
 
 class Form1(Form1Template):
@@ -10,41 +11,114 @@ class Form1(Form1Template):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
+    self.plot_process.data = [
+      go.Scatter(
+        x = [1, 2, 3],
+        y = [3, 1, 6],
+        name = 'tiến trình',
+        marker = dict(
+          color= 'rgb(16, 32, 77)'
+        )
+      )
+    ]
 
+    self.plot_process.layout = {
+      'title': 'Thời gian xử lý các tiến trình',
+      'xaxis': {
+        'title': 'thời gian chờ'
+      },
+      'yaxis': {
+        'title': 'thời gian hoàn thành'
+      }
+    }
+  
   def repeating_panel_process_show(self, **event_args):
     self.repeating_panel_process.items = []
 
   def drop_down_algorithm_show(self, **event_args):
-    self.drop_down_algorithm.items = ["Round Robin", "FCFS", "SJC"]
+    self.drop_down_algorithm.items = ["FCFS", "SJC", "Round Robin"]
 
   def drop_down_algorithm_change(self, **event_args):
-    pass
+    algorithmSelected = self.drop_down_algorithm.selected_value
+    if(algorithmSelected == 'Round Robin'):
+      self.txt_prioty.background = "theme:On Disabled"
+      self.txt_prioty.enabled = False
+    else:
+      self.txt_prioty.background = ""
+      self.txt_prioty.enabled = True
 
   def button_add_process_click(self, **event_args):
+    if(self.txt_prioty.text == ""):
+      self.txt_prioty.text = "0"
+
+    if(self.isInputEmpty() == False):
+      alert("Yêu cầu nhập đầy đủ thông tin tiến trình !!")
+      return
+
+    if(self.isInputNumberValue() == False):
+      alert("Yêu cầu nhập số nguyên cho các giá trị tiến trình !!")
+      return
+
+    if(self.isColorValue(self.txt_color.text) == False):
+      alert("Yêu cầu nhập mã màu hexa cho tiến trình !!")
+      return
+    
     objProcess = [{
       'index': len(self.repeating_panel_process.items),
       'process': self.txt_process.text,
       'at': int(self.txt_at.text),
       'bt': int(self.txt_bt.text),
-      'prioty': int(self.txt_prioty.text)
+      'prioty': int(self.txt_prioty.text),
+      'color': self.txt_color.text
     }]
     processListAdded = list(self.repeating_panel_process.items) + objProcess
     self.repeating_panel_process.items = processListAdded
-    self.reset_txt_inser_process()
+    self.reset_txt_insert_process()
 
-  def reset_txt_inser_process(self):
-    self.txt_process.text = self.txt_at.text = self.txt_bt.text = self.txt_prioty.text = ""
+  def reset_txt_insert_process(self):
+    self.txt_process.text = self.txt_at.text = self.txt_bt.text = self.txt_prioty.text = self.txt_color.text = ""
 
   def button_solve_click(self, **event_args):
-    processBackgrounds = {"A": "red", "B": "green", "C": "blue"}
-    #processTimeLines = anvil.server.call('roundRobinScheduling', self.repeating_panel_process.items, 4)
-    processTimeLines, processTimeList, timeAvg = anvil.server.call('SJFScheduling', self.repeating_panel_process.items)
+    self.xy_panel_process.clear()
+    processBackgrounds = self.initDictColorFromProcessList(self.repeating_panel_process.items)
+    processTimeLines, processTimeList, timeAvg = anvil.server.call('roundRobinScheduling', self.repeating_panel_process.items, 4)
+    #processTimeLines, processTimeList, timeAvg = anvil.server.call('SJFScheduling', self.repeating_panel_process.items)
     print(timeAvg)
     self.drawProcessGanttCharts(processTimeLines, processBackgrounds)
     self.label_wta.text = timeAvg['waiting-time-avg']
     self.label_taa.text = timeAvg['turnaround-time-avg']
-  
 
+  def initDictColorFromProcessList(self, processList):
+    dictColor = {}
+    for process in processList:
+        name = item['process']
+        color = item['color']
+        dictColor[name] = color
+    return dictColor
+  
+  def isInputNumberValue(self):
+    if(self.isNumberic(self.txt_at.text) == False or self.isNumberic(self.txt_bt.text) == False or self.isNumberic(self.txt_prioty.text) == False):
+      return False
+    return True
+
+  def isNumberic(self, input_string):
+    pattern = r'^\d+$'
+    if re.match(pattern, input_string):
+        return True
+    else:
+        return False
+
+  def isInputEmpty(self):
+    if(self.txt_process.text == "" or self.txt_at.text == "" or self.txt_bt.text ==  "" or self.txt_color.text == ""):
+      return False
+    return True
+
+  def isColorValue(self, color_string):
+    hex_pattern = r'^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$'
+    if re.match(hex_pattern, color_string):
+      return True
+    return False
+    
   def drawProcessGanttCharts(self, processTimeLines, processBackgrounds):
     widthSquare = 40
     posX = 30

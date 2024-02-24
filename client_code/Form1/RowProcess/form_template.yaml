@@ -34,3 +34,9 @@ components:
   layout_properties: {column: WTSMUR}
   event_bindings: {click: link_delete_click}
   data_bindings: []
+- name: lbl_color
+  properties: {bold: true}
+  type: Label
+  layout_properties: {column: YVXBOW}
+  data_bindings:
+  - {property: text, code: 'self.item[''color'']', writeback: false}
