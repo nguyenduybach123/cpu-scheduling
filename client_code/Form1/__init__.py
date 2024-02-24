@@ -38,9 +38,12 @@ class Form1(Form1Template):
   def button_solve_click(self, **event_args):
     processBackgrounds = {"A": "red", "B": "green", "C": "blue"}
     #processTimeLines = anvil.server.call('roundRobinScheduling', self.repeating_panel_process.items, 4)
-    processTimeLines = anvil.server.call('SJFScheduling', self.repeating_panel_process.items)
-    print(processTimeLines)
+    processTimeLines, processTimeList, timeAvg = anvil.server.call('SJFScheduling', self.repeating_panel_process.items)
+    print(timeAvg)
     self.drawProcessGanttCharts(processTimeLines, processBackgrounds)
+    self.label_wta.text = timeAvg['waiting-time-avg']
+    self.label_taa.text = timeAvg['turnaround-time-avg']
+  
 
   def drawProcessGanttCharts(self, processTimeLines, processBackgrounds):
     widthSquare = 40
@@ -51,7 +54,7 @@ class Form1(Form1Template):
     for i in range(0,len(processTimeLines)):
       process = processTimeLines[i]
       timeEnd = process['time-end'] if i == len(processTimeLines) - 1 else ""
-      withProcess = widthSquare + (int(process['time-end']) - int(process['time-start']))
+      withProcess = widthSquare + int(int(process['time-end']) - int(process['time-start']) * 1.3)
       processSquare = SquareProcess(name_process = process['name'], time_start = process['time-start'], time_end = timeEnd, background_process = processBackgrounds[process['name']])
       self.xy_panel_process.add_component(processSquare, x=posX, y=posY, width=withProcess)
       posX = posX + withProcess 

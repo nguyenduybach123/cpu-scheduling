@@ -30,13 +30,19 @@ def roundRobinScheduling(processList, quantumTime):
     else:
       ganttGraph.append({'name': processReady['process'], 'time-start': str(timeLine), 'time-end': str(timeLine + processReady['bt'])})
       timeLine = timeLine + processReady['bt']
-      processTimeList.append({'name': processReady['name'], 'waiting-time': timeLine - processList[processReady['index']['bt']]})
-  return ganttGraph, processTimeList
+      processTimeList.append({'name': processReady['name'], 'turnaround-time': timeLine, 'waiting-time': timeLine - processList[processReady['index']['bt']]})
+  
+  timeAvg = {
+    'waiting-time-avg': avgList([processTime['waiting-time'] for processTime in processTimeList]),
+    'turnaround-time-avg': avgList([processTime['turnaround-time'] for processTime in processTimeList])
+  }
+  
+  return ganttGraph, processTimeList, timeAvg
 
 @anvil.server.callable
 def FCFSScheduling(processList):
   ganttGraph = []
-  waiting_time = [0]
+  turnaround_time = [0]
   processTimeList = []
   processListSortedByAT = sorted(processList, key=lambda item: item['at'])
   timeLine = 0
@@ -48,19 +54,26 @@ def FCFSScheduling(processList):
   while(processQueue.empty() == False):
     processReady = processQueue.get()
     ganttGraph.append({'name': processReady['process'], 'time-start': str(timeLine), 'time-end': str(timeLine + processReady['bt'])})
-    waiting_time_value = waiting_time[i-1] + processReady['bt'] - processReady['at']
-    if waiting_time_value < 0:
-          waiting_time_value = 0
-    waiting_time.append(waiting_time_value)
-    processTimeList.append({'name': processReady['name'], 'waiting-time': waiting_time_value})
+    turnaround_time_value = turnaround_time[i-1] + processReady['bt'] - processReady['at']
+    if turnaround_time_value < 0:
+          turnaround_time_value = 0
+    turnaround_time.append(turnaround_time_value)
+    processTimeList.append({'name': processReady['name'], 'turnaround-time': turnaround_time_value, 'waiting-time': timeLine})
     i += 1
     timeLine = timeLine + processReady['bt']
-  return ganttGraph, processTimeList
-0
+  
+  timeAvg = {
+    'waiting-time-avg': avgList([processTime['waiting-time'] for processTime in processTimeList]),
+    'turnaround-time-avg': avgList([processTime['turnaround-time'] for processTime in processTimeList])
+  }
+  
+  return ganttGraph, processTimeList, timeAvg
+
+
 @anvil.server.callable
 def SJFScheduling(processList):
   ganttGraph = []
-  waiting_time = [0]
+  turnaround_time = [0]
   processTimeList = []
   timeLine = 0
   processListSortedByAT = sorted(processList, key=lambda item: item['bt'])
@@ -72,12 +85,20 @@ def SJFScheduling(processList):
   while(processQueue.empty() == False):
     processReady = processQueue.get()
     ganttGraph.append({'name': processReady['process'], 'time-start': str(timeLine), 'time-end': str(timeLine + processReady['bt'])})
-    waiting_time_value = waiting_time[i-1] + processReady['bt'] - processReady['at']
-    if waiting_time_value < 0:
-          waiting_time_value = 0
-    waiting_time.append(waiting_time_value)
-    processTimeList.append({'name': processReady['name'], 'waiting-time': waiting_time_value})
+    turnaround_time_value = turnaround_time[i-1] + processReady['bt'] - processReady['at']
+    if turnaround_time_value < 0:
+          turnaround_time_value = 0
+    turnaround_time.append(turnaround_time_value)
+    processTimeList.append({'name': processReady['process'], 'turnaround-time':turnaround_time_value, 'waiting-time': timeLine })
     i += 1
     timeLine = timeLine + processReady['bt']
-  return ganttGraph, processTimeList
 
+  timeAvg = {
+    'waiting-time-avg': avgList([processTime['waiting-time'] for processTime in processTimeList]),
+    'turnaround-time-avg': avgList([processTime['turnaround-time'] for processTime in processTimeList])
+  }
+  
+  return ganttGraph, processTimeList, timeAvg
+
+def avgList(lst):
+  return sum(lst) / len(lst)
