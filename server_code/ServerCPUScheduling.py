@@ -56,7 +56,7 @@ def FCFSScheduling(processList):
     ganttGraph.append({'name': processReady['process'], 'time-start': str(timeLine), 'time-end': str(timeLine + processReady['bt'])})
     turnaround_time_value = turnaround_time[i-1] + processReady['bt'] - processReady['at']
     if turnaround_time_value < 0:
-          turnaround_time_value = 0
+      turnaround_time_value = 0
     turnaround_time.append(turnaround_time_value)
     processTimeList.append({'name': processReady['process'], 'turnaround-time': turnaround_time_value, 'waiting-time': timeLine})
     i += 1

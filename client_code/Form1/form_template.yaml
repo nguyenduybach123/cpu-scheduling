@@ -51,7 +51,6 @@ components:
           - {id: JKSDUP, title: Tiến trình, data_key: col_process, expand: true}
           - {id: VJQQOR, title: thời gian đến, data_key: col_at, expand: false}
           - {id: OJLQEN, title: Thời gian thực hiện, data_key: col_bt, expand: false}
-          - {id: TIYGWF, data_key: col_prioty, title: Độ ưu tiên, expand: false}
           - {id: YVXBOW, data_key: color, title: Màu sắc}
           - {id: WTSMUR, data_key: column_1, title: Thiết Lập}
           border: ''
@@ -85,10 +84,6 @@ components:
             properties: {role: outlined, placeholder: Tg thực hiện, align: center}
             type: TextBox
             layout_properties: {grid_position: 'IXWSVE,BVLVGK'}
-          - name: txt_prioty
-            properties: {role: outlined, placeholder: Độ ưu tiên, align: center, background: ''}
-            type: TextBox
-            layout_properties: {grid_position: 'IXWSVE,UXAKKW'}
           - name: txt_color
             properties: {role: outlined, placeholder: Màu sắc, align: center}
             type: TextBox

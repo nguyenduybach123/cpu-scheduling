@@ -21,6 +21,7 @@ class Form1(Form1Template):
         'title': 'thời gian hoàn thành'
       }
     }
+
     
 
   
@@ -34,18 +35,11 @@ class Form1(Form1Template):
   def drop_down_algorithm_change(self, **event_args):
     algorithmSelected = self.drop_down_algorithm.selected_value
     if(algorithmSelected == 'Round Robin'):
-      self.txt_prioty.background = "theme:On Disabled"
-      self.txt_prioty.enabled = False
       self.txt_quantum_time.visible = True
     else:
-      self.txt_prioty.background = ""
-      self.txt_prioty.enabled = True
       self.txt_quantum_time.visible = False
 
   def button_add_process_click(self, **event_args):
-    if(self.txt_prioty.text == ""):
-      self.txt_prioty.text = "0"
-
     if(self.isInputEmpty() == False):
       alert("Yêu cầu nhập đầy đủ thông tin tiến trình !!")
       return
@@ -63,7 +57,6 @@ class Form1(Form1Template):
       'process': self.txt_process.text,
       'at': int(self.txt_at.text),
       'bt': int(self.txt_bt.text),
-      'prioty': int(self.txt_prioty.text),
       'color': self.txt_color.text
     }]
     processListAdded = list(self.repeating_panel_process.items) + objProcess
@@ -71,7 +64,7 @@ class Form1(Form1Template):
     self.reset_txt_insert_process()
 
   def reset_txt_insert_process(self):
-    self.txt_process.text = self.txt_at.text = self.txt_bt.text = self.txt_prioty.text = self.txt_color.text = ""
+    self.txt_process.text = self.txt_at.text = self.txt_bt.text = self.txt_color.text = ""
 
   def button_solve_click(self, **event_args):
     if(len(self.repeating_panel_process.items) == 0):
@@ -114,7 +107,7 @@ class Form1(Form1Template):
     return dictColor
   
   def isInputNumberValue(self):
-    if(self.isNumberic(self.txt_at.text) == False or self.isNumberic(self.txt_bt.text) == False or self.isNumberic(self.txt_prioty.text) == False):
+    if(self.isNumberic(self.txt_at.text) == False or self.isNumberic(self.txt_bt.text) == False):
       return False
     return True
 
@@ -153,14 +146,15 @@ class Form1(Form1Template):
   def drawPlotProcess(self, processTimeList, processBackgrounds):
     self.plot_process.data = [
       go.Scatter(
-        x = process['waiting-time'],
-        y = process['turnaround-time'],
+        x = list([process['waiting-time']]),
+        y = list([process['turnaround-time']]),
+        name = process['name'],
         marker = dict(
-          color= processBackgrounds[process['name']]
+          color= processBackgrounds[process['name']],
+          size= 20
         )
       ) for process in processTimeList
     ]
-    print(self.plot_process.data)
 
       
     
