@@ -107,6 +107,7 @@ components:
           properties: {height: 83}
           type: XYPanel
           layout_properties: {}
+          components: []
       - name: column_panel_5
         properties: {role: elevated-card}
         type: ColumnPanel
