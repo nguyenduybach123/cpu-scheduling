@@ -146,14 +146,14 @@ class Form1(Form1Template):
   def drawPlotProcess(self, processTimeList, processBackgrounds):
     self.plot_process.data = [
       go.Scatter(
-        x = list([process['waiting-time']]),
-        y = list([process['turnaround-time']]),
-        name = process['name'],
+        x = list([process['waiting-time'] for process in processTimeList]),
+        y = list([process['turnaround-time'] for process in processTimeList]),
+        name = list([process['name'] for process in processTimeList]),
         marker = dict(
-          color= processBackgrounds[process['name']],
+          color= list(processBackgrounds.values()),
           size= 20
         )
-      ) for process in processTimeList
+      )
     ]
 
       
