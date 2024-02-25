@@ -151,7 +151,10 @@ class Form1(Form1Template):
         name = list([process['name'] for process in processTimeList]),
         marker = dict(
           color= list(processBackgrounds.values()),
-          size= 20
+          size= 50,
+          line = dict(
+            width = 2
+          )
         )
       )
     ]
