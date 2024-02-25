@@ -21,6 +21,7 @@ class Form1(Form1Template):
         'title': 'thời gian hoàn thành'
       }
     }
+    
 
   
   
@@ -101,7 +102,8 @@ class Form1(Form1Template):
     self.drawProcessGanttCharts(processTimeLines, processBackgrounds)
     self.label_wta.text = timeAvg['waiting-time-avg']
     self.label_taa.text = timeAvg['turnaround-time-avg']
-    self.drawPlotProcess(processTimeList)
+    self.drawPlotProcess(processTimeList, processBackgrounds)
+    self.plot_process.redraw()
   
   def initDictColorFromProcessList(self, processList):
     dictColor = {}
@@ -146,22 +148,19 @@ class Form1(Form1Template):
       widthProcess = widthSquare + int(int(process['time-end']) - int(process['time-start']) * 1.3)
       processSquare = SquareProcess(name_process = process['name'], time_start = process['time-start'], time_end = timeEnd, background_process = processBackgrounds[process['name']])
       self.xy_panel_process.add_component(processSquare, x=posX, y=posY, width = widthProcess if widthProcess > 40 else widthSquare)
-      posX = posX + withProcess 
+      posX = posX + widthProcess 
 
-  def drawPlotProcess(self, processTimeList):
-    for process in processTimeList:
-      self.plot_process.data.append(
-        go.Scatter(
-          x = process['waiting-time'],
-          y = process['turnaround-time'],
-          name = process['name'],
-          marker = dict(
-            color = "#ff9999",
-            size = 20
-          )
+  def drawPlotProcess(self, processTimeList, processBackgrounds):
+    self.plot_process.data = [
+      go.Scatter(
+        x = process['waiting-time'],
+        y = process['turnaround-time'],
+        marker = dict(
+          color= processBackgrounds[process['name']]
         )
-      )
-    self.plot_process.redraw()
+      ) for process in processTimeList
+    ]
+    print(self.plot_process.data)
 
       
     
